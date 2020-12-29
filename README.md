@@ -6,25 +6,31 @@ You must have Scikit Learn, Pandas (for Machine Leraning Model) and Flask (for A
 
 ### Project Structure
 This project has four major parts :
-1. model.py - This contains code fot our Machine Learning model to predict employee salaries absed on trainign data in 'hiring.csv' file.
-2. app.py - This contains Flask APIs that receives employee details through GUI or API calls, computes the precited value based on our model and returns it.
-3. request.py - This uses requests module to call APIs already defined in app.py and dispalys the returned value.
+1. model.py - This file contains the code for our Machine Learning model to predict employee salaries based on training data in 'hiring.csv' file.
+2. app.py - This file contains Flask API that receives employee details through GUI or API calls, computes the precited value based on our model and returns it.
+3. request.py - This file uses, requests module to call APIs already defined in app.py and dispalys the returned value.
 4. templates - This folder contains the HTML template to allow user to enter employee detail and displays the predicted employee salary.
+5. requirements.txt - This file contains, the list of all the liabraries with their respective versions, reuired to run the flask app successfully.
 
 ### Running the project
-1. Ensure that you are in the project home directory. Create the machine learning model by running below command -
+1. Ensure that you are in the project home directory. 
+   Create virtual environment and run the following command to install all the required liabraries.
+'''
+pip install -r requirements.txt    
+''' 
+2. Create the machine learning model by running below command
 ```
 python model.py
 ```
 This would create a serialized version of our model into a file model.pkl
 
-2. Run app.py using below command to start Flask API
+3. Run app.py using below command to start Flask API
 ```
 python app.py
 ```
 By default, flask will run on port 5000.
 
-3. Navigate to URL http://localhost:5000
+4. Navigate to URL http://localhost:5000
 
 You should be able to view the homepage as below :
 ![alt text](http://www.thepythonblog.com/wp-content/uploads/2019/02/Homepage.png)
