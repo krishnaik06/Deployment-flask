@@ -8,7 +8,7 @@ dataset = pd.read_csv('hiring.csv')
 
 dataset['experience'].fillna(0, inplace=True)
 
-dataset['test_score'].fillna(dataset['test_score'].mean(), inplace=True)
+dataset['test_score'].fillna(dataset['test_score'].median(), inplace=True)
 
 X = dataset.iloc[:, :3]
 
@@ -25,15 +25,20 @@ y = dataset.iloc[:, -1]
 #Splitting Training and Test Set
 #Since we have a very small dataset, we will train our model with all availabe data.
 
-from sklearn.linear_model import LinearRegression
-regressor = LinearRegression()
+#from sklearn.linear_model import LinearRegression
+#regressor = LinearRegression()
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
 
 #Fitting model with trainig data
-regressor.fit(X, y)
-
+#regressor.fit(X, y)
+#regressor.score(X, y)
+clf = make_pipeline(StandardScaler(), SVC(gamma='auto'))
+clf.fit(X, y)
 # Saving model to disk
-pickle.dump(regressor, open('model.pkl','wb'))
+pickle.dump(clf, open('model2.pkl','wb'))
 
 # Loading model to compare the results
-model = pickle.load(open('model.pkl','rb'))
+model = pickle.load(open('model2.pkl','rb'))
 print(model.predict([[2, 9, 6]]))
